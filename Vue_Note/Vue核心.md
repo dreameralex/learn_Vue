@@ -46,6 +46,51 @@ VM: ViewModel： VUE实例对象
 
 
 
+# 1.6 数据代理
+```js
+<script type="text/javascript">
+        Vue.config.productionTip = false
+        let data={
+                name:'PKU',
+                address:'BJ'
+            }
+        const vm = new Vue({
+            el:'#root',
+            data
+        })
+    </script>
+```
 
+`vm._data === object_data === data`
 
+![[1713600552323.png]]
+Vue中的数据代理：
+- 通过vm对象来代理data对象中的属性操作（读写）
+- 好处：更加方便操作data中的数据
+- 基本原理：
+	- 通过`Object.defineProperty()` 把data对象中所有属性添加到vm上。
+	- 为每一个添加到vm上的属性，都指定一个`getter/setter`
+	- 在`getter/setter`内部操作（读写）data中对应的属性
 
+# 1.7 事件处理
+```js
+<script type="text/javascript">
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'PKU',
+            },
+            methods:{
+                showInfo1(event){
+                    console.log(this)
+                },
+                showInfo2(event)=>{
+                    console.log(this)
+                }
+            }
+        })
+    </script>
+```
+`showInfo1`中的this是指vue对象
+`showInfo2`中的this是指window对象
