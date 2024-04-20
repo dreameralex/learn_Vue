@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVVM</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>Hello,{{name}}</h1>
+        <h1>Address,{{Address}}</h1>
+        <h1>Test1: {{1+1}}</h1>
+        <h1>Test2: {{$options}}</h1>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el: '#root',
+        data:{
+            name: 'alex',
+            address: 'BJ'
+        }
+    })
+
+    
+</script>
+</html>

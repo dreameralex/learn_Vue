@@ -10,6 +10,12 @@
 <body>
     <div id="root">
         <h1> Hello World {{name.toUpperCase()}}，{{Date.now()}} </h1>
+        <h1>插值语法</h1>
+        <h3>Hello {{name}}</h3>
+        <hr/>
+        <h1>指令语法</h1>
+        <a v-bind:href="url">Go to Baidu</a>
+        <a :href="url">Go to Baidu2</a>
     </div>
 
 
@@ -23,7 +29,8 @@
             //el: document.getElementById('root')
             data: {//data中用于存储数据，数据供e1所指定的容器去使用，值是我峨嵋你暂时先写成的一个对象。
                 name: 'Alex',
-                age: 19
+                age: 19,
+                url: 'http://www.baidu.com'
             }
         })
     </script>
