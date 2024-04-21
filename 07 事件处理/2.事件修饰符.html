@@ -41,8 +41,9 @@
         <a href="http://www.baidu.com" @click.prevent="showInfo">点我提示信息</a>
         <!-- 组织事件冒泡（常用） -->
         <div class="demo1" @click="showInfo">
-            <button @click.stop="showInfo">点我提示信息</button>
+            <button @click.prevent.stop="showInfo">点我提示信息</button>
         </div>
+
         <!-- 事件只触发一次 -->
         <button class="demo1" @click.once="showInfo">点我提示信息</button>
         <!-- 使用事件的捕获模式 -->
