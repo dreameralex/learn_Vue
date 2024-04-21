@@ -95,7 +95,8 @@ Vue中的数据代理：
 `showInfo1`中的this是指vue对象
 `showInfo2`中的this是指window对象
 
-Vue中的时间修饰符
+## 事件修饰符
+Vue中的事件修饰符
 	1. prevent
 	2. stop
 	3. once
@@ -106,3 +107,15 @@ Vue中的时间修饰符
 滚动事件
 - wheel: 鼠标滚轴滚动，到底滚动还是可以捕获事件的
 - scroll: 滚动
+
+## 键盘事件
+Vue中常用的按键别名：
+- 回车: enter
+- 删除：delet
+- esc
+- space
+- tab
+- up
+- down
+- left
+- right
