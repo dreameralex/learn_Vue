@@ -94,3 +94,15 @@ Vue中的数据代理：
 ```
 `showInfo1`中的this是指vue对象
 `showInfo2`中的this是指window对象
+
+Vue中的时间修饰符
+	1. prevent
+	2. stop
+	3. once
+	4. capture
+	5. self: 只有`event.target`是当前操作的元素才触发事件
+	6. passive: 时间的默认行为立即执行，无需等待事件回调执行完毕
+
+滚动事件
+- wheel: 鼠标滚轴滚动，到底滚动还是可以捕获事件的
+- scroll: 滚动
