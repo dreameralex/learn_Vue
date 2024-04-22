@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First know Vue</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>Today's weather is {{info}}</h2>
+        <button @click="isHot = !isHot">Switch weather</button>
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                isHot:true
+            },
+            methods: {
+                
+            },
+            computed:{
+                info(){
+                    return this.isHot ? "Hot" : "cool"
+                }
+            },
+            methods:{
+                // changeWeather(){
+                //     this.isHot = !this.isHot
+                // }
+            },
+            // 监视1
+            // watch:{
+            //     isHot:{
+            //         immediate:true,//初始化时让handler调用一下
+            //         //handler什么时候调用？
+            //         //isHot发生改变时
+            //         handler(newValue,oldValue){
+            //             console.log('info is modified',newValue,oldValue)
+            //         }
+            //     }
+            // }
+        })
+        //监视2
+        vm.$watch('isHot',{
+            immediate:true,
+            handler(newValue,oldValue){
+                console.log('info is modified',newValue,oldValue)
+            }
+        })
+    </script>
+</html>

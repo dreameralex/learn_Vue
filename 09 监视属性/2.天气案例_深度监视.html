@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例_深度监视</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>Today's weather is {{info}}</h2>
+        <button @click="isHot = !isHot">Switch weather</button>
+        <hr/>
+        <h3>a is: {{numbers.a}}</h3>
+        <button @click="numbers.a++">Add a</button>
+        <h3>b is: {{numbers.b}}</h3>
+        <button @click="numbers.b++">Add a</button>
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                isHot:true,
+                numbers:{
+                    a:1,
+                    b:2
+                }
+            },
+            methods: {
+                
+            },
+            computed:{
+                info(){
+                    return this.isHot ? "Hot" : "cool"
+                }
+            },
+            methods:{
+                // changeWeather(){
+                //     this.isHot = !this.isHot
+                // }
+            },
+
+            watch:{
+                isHot:{
+                    handler(newValue,oldValue){
+                        console.log('info is modified',newValue,oldValue)
+                    }
+                },
+                //监视多级结构中某个属性的变化
+                // 'numbers.a':{
+                //     handler(){
+                //         console.log('a is changed!')
+                //     }
+                // }
+                //监视多级结构中所有属性的变化
+                numbers:{
+                    deep:true,
+                    handler(){
+                        console.log('numbers is changed!')
+                    }
+                }
+            }
+        })
+    </script>
+</html>
