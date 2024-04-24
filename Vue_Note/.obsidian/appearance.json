@@ -1,4 +1,7 @@
 {
   "accentColor": "",
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "monospaceFontFamily": "Consolas",
+  "baseFontSize": 21,
+  "baseFontSizeAction": true
 }

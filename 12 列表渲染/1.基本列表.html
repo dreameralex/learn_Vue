@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First know Vue</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 遍历数组 -->
+        <h2>Name List:</h2>
+        <ul>
+            <li v-for="(p,index) in personList" :key="index">
+                {{p.name}}-{{p.age}}--{{index}}
+            </li>
+        </ul>
+        <!-- 遍历对象 -->
+        <h2>Car info:</h2>
+        <ul>
+            <li v-for="(a,b) in car">
+                {{a}}-{{b}}
+            </li>
+        </ul>
+        <!-- 遍历字符串-->
+        <h2>Str:</h2>
+        <ul>
+            <li v-for="(a,b) in str">
+                {{a}}-{{b}}
+            </li>
+        </ul>
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el:'#root',
+            data:{
+                personList:[
+                    {id:'001',name:'Alex',age:28},
+                    {id:'002',name:'Tom',age:35},
+                    {id:'003',name:'Bruce',age:42},
+                ],
+                car:{
+                    name:'Audi',
+                    price:'90W',
+                    color:'pink'
+                },
+                str:"hello"
+            }
+        })
+    </script>
+</html>

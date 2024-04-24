@@ -20,7 +20,7 @@
             background-color: greenyellow;
         }
         .atguigu1{
-            font-size:larger;
+            counter-reset: red;
         }
         .atguigu2{
             font-weight: bolder;
@@ -40,7 +40,7 @@
         <!-- 绑定class样式 数组写法 适用于：样式的类名不确定需要动态绑定 -->
         <div class="basic" :class="arr">{{name}}</div><br/><br/>
         <!-- 绑定class样式 对象写法 适用于：样式个数确定，名字确定，动态绑定 -->
-        <div class="basic" :class="classObj">{{name}}</div><br/><br/>
+        <div class="basic" :class="classObj" :style="styleObj">{{name}}</div><br/><br/>
     </div>
 </body>
     <script type="text/javascript">
@@ -55,7 +55,13 @@
                     atguigu1:false,
                     atguigu2:false,
                     atguigu3:false,
+                },
+                styleObj:{
+                    fontSize:'40px',
+                    color: 'red',
+                    backgroundColor:'orange'
                 }
+                
             },
             methods: {
                 changeMood(){

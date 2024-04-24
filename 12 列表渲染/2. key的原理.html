@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>key的原理</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 遍历数组 -->
+        <h2>Name List:</h2>
+        <button @click.once="add"   >Add a person</button>
+        <ul>
+            <li v-for="(p,index) in personList" :key="index">
+                {{p.name}}-{{p.age}}--{{index}}
+            </li>
+        </ul>
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el:'#root',
+            data:{
+                personList:[
+                    {id:'001',name:'Alex',age:28},
+                    {id:'002',name:'Tom',age:35},
+                    {id:'003',name:'Bruce',age:42},
+                ]
+            },
+            methods: {
+                add(){
+                    const p = {id:'004',name:'Hunt',age:7}
+                    this.personList.unshifted(p)
+                }
+            },
+        })
+    </script>
+</html>

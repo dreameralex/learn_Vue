@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>The n is:{{n}}</h2>
+        <button @click="n = Math.floor(Math.random() * 4);">Random n:</button>
+        <!-- 使用v-show做条件渲染 -->
+        <!-- <h2 v-show='false'>Welcome to {{name}}</h2> -->
+        <!-- 使用v-if做条件渲染 -->
+        <h2 v-if='false'>Welcome to {{name}}</h2>
+        <div v-if="n===0">Angular</div>
+        <div v-else-if="n===1">React</div>
+        <div v-else-if="n===2">Vue</div>
+        <div v-else>Empty</div>
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            data:{
+                name:'Alex\'s home',
+                n:0
+            }
+        })
+    </script>
+</html>
