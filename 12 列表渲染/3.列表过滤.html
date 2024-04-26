@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>Name List:</h2>
+        <input type="text" placeholder="Pleas input name:" v-model="keyWord">
+        <ul>
+            <li v-for="(p,index) in filterPersons" :key="index">
+                {{p.name}}-{{p.age}}--{{p.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        //使用watch 实现
+        // new Vue({
+        //     el:'#root',
+        //     data:{
+        //         keyWord:'',
+        //         personList:[
+        //             {id:'001',name:'马冬梅',age:28,sex:'女'},
+        //             {id:'002',name:'周冬雨',age:35,sex:'女'},
+        //             {id:'003',name:'周杰伦',age:42,sex:'男'},
+        //             {id:'004',name:'温兆伦',age:87,sex:'男'},
+        //         ],
+        //         filterPersons: []
+        //     },
+        //     watch:{
+        //         keyWord:{
+        //             //immediata 是开始时立即执行，没输入时val是空的，所以全部匹配
+        //             immediate: true,
+        //             handler(val){
+        //                 this.filterPersons = this.personList.filter((p)=>{
+        //                     return p.name.indexOf(val) !== -1
+        //                 })
+        //             }
+        //         }
+        //     }
+        // })
+        
+        //使用computed实现
+        new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                personList:[
+                    {id:'001',name:'马冬梅',age:28,sex:'女'},
+                    {id:'002',name:'周冬雨',age:35,sex:'女'},
+                    {id:'003',name:'周杰伦',age:42,sex:'男'},
+                    {id:'004',name:'温兆伦',age:87,sex:'男'},
+                ]
+            },
+            computed: {
+                filterPersons(){
+                    return this.personList.filter((p)=>{
+                        return p.name.indexOf(this.keyWord) !== -1
+                    })
+                }
+            }
+
+        })
+        //computed 和 watch 都可以实现的时候，优先使用computed
+    </script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>Name List:</h2>
+        <input type="text" placeholder="Pleas input name:" v-model="keyWord">
+        <button @click="sortType = 2">年龄升序</button>
+        <button @click="sortType = 1">年龄降序</button>
+        <button @click="sortType = 0">原顺序</button>
+        <ul>
+            <li v-for="(p,index) in filterPersons" :key="p.id">
+                {{p.name}}-{{p.age}}--{{p.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                sortType:0,//0原顺序，1降序，2升序
+                personList:[
+                    {id:'001',name:'马冬梅',age:28,sex:'女'},
+                    {id:'002',name:'周冬雨',age:35,sex:'女'},
+                    {id:'003',name:'周杰伦',age:42,sex:'男'},
+                    {id:'004',name:'温兆伦',age:87,sex:'男'},
+                ]
+            },
+            computed: {
+                filterPersons(){
+                    const arr = this.personList.filter((p)=>{
+                        return p.name.indexOf(this.keyWord) !== -1
+                    })
+                    //判断是否需要排序
+                    if(this.sortType){
+                        arr.sort((p1,p2)=>{
+                            //return p1 - p2 // > 0 交换位置, 升序前减后，降序后减前
+                            return this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age
+                        })
+                    }
+                    return arr
+                }
+                
+            }
+
+        })
+        //computed 和 watch 都可以实现的时候，优先使用computed
+    </script>
+</html>
