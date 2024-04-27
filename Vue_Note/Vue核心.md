@@ -147,3 +147,62 @@ react、vue中的key有什么作用？
 4. 开发中如何选择key？
 		（1）最好使用每条数据的唯一标识作为key，比如id、手机号、身份证号等唯一值
 		（2）如果不存在对数据的逆序添加、逆序删除等破坏顺序操作，仅用于渲染列表所展示，使用index作为key是没有问题的。
+
+# 1.9 监视
+## set
+vm不允许作为target
+```js
+data:{
+    name:110,
+    address:"Beijing",
+    student: {
+        name:'Tom',
+        age:{
+            rAge:40,
+            sAge:29,
+        },
+        friends:[
+            {name:'Alex',age:23},
+            {name:'Alice',age:36},
+        ]
+    }
+},
+可以使用以下方式新增属性：
+Vue.set(this.student,'sex','男')
+this.$set(this.student,'sex','男')
+但是不可以vm作为target，不能修改data层级下的，新增属性
+```
+
+## Vue检测数据原理
+```js
+let arr = [1,2,3,4]
+arr.push === Array.prototype.push
+>true
+```
+此处arr调用的push是原型对象的push
+
+```js
+vm._data.student.push === Array.prototype.push
+>false
+```
+此处的push，是Vue中的push，**重新解析模板，生成新的DOM**；
+
+1. Vue会监视data所有层次的数据，
+2. 如何检测对象中的数据？
+	通过setter实现监视，且要在new Vue时就传入要检测的数据。
+	- 对象中后追加的属性，VUE默认不做响应式处理
+	- 如需给后添加的属性做响应式处理，请使用如下API：
+```js
+	Vue.set(target, propertyName/index, value)
+	vm.$set(target, propertyName/index, value)	
+```
+
+3. 如何检测数组中的数据？
+	通过包裹数组更新元素的方法实现，本质做了：
+	- 调用原生的方法对数组进行更新
+	- 重新解析模板，进而更新页面
+4. 在Vue中修改数组中的某一元素一定要用如下的方法：
+	1. 使用`push(),pop(),shift(),unshift(),splice(),sort(),revers()`
+	2. `Vue.set(),vm.$set()`
+	特别注意：`Vue.set(),vm.$set()`不能给vm或者vm的跟数据对象添加属性！！！
+
