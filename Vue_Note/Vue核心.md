@@ -206,3 +206,33 @@ vm._data.student.push === Array.prototype.push
 	2. `Vue.set(),vm.$set()`
 	特别注意：`Vue.set(),vm.$set()`不能给vm或者vm的跟数据对象添加属性！！！
 
+# 13 收集表单数据
+v-model，收集输入的value值
+
+# 14内置指令
+## v-text
+```js
+<div v-text="name"></div>
+```
+v-text直接替换div 重点，页面只显示v-text的内容；
+## v-html
+```js
+<div v-html="str"></div>
+str:'<h3>Hello World~</h3>'
+```
+![[1714227517771.png]]
+
+
+## v-once
+```js
+<h2 v-once>初始化的n值是：{{n}}</h2>
+<h2>当前的n值是：{{n}}</h2>
+<button @click="n++">++</button>
+```
+所在节点初次渲染后，就视为静态内容了。
+以后数据改变不会引起v-once所在结构的更新，可以用于优化性能。
+
+## v-pre
+```js
+
+```

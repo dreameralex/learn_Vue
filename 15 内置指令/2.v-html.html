@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.v-html</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>{{name}}</div>
+        <div v-html="str"></div>
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el:'#root',
+            data:{
+                name:'Alex',
+                str:'<h3>Hello World~</h3>'
+            }
+        })
+    </script>
+</html>
