@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析生命周期</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <!-- <div id="root">
+        <h2>n is: {{n}}</h2>
+        <button @click="add">add1</button>
+    </div> -->
+    <div id="root" :x="n"></div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        const vm = new Vue({
+            el:'#root',
+            template:`
+                <div>
+                    <h2>n is: {{n}}</h2>
+                    <button @click="add">add1</button>
+                </div>
+            `,
+            
+            data:{
+                n:1
+            },
+            methods: {
+                add(){
+                    this.n++
+                }
+            },
+            beforeCreate() {
+                c
+            },
+            mounted(){
+            }
+        })
+        //通过外部的计时器实现消失效果，不推荐
+        // setInterval(()=>{
+        //     vm.opacity -= 0.01
+        //     if(vm.opacity <= 0) vm.opacity = 1
+        // },16)
+    </script>
+</html>
