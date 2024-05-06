@@ -8,10 +8,11 @@
     <script type="text/javascript" src="../JS/vue.js"></script>
 </head>
 <body>
-    <!-- <div id="root">
+    <div id="root">
         <h2>n is: {{n}}</h2>
         <button @click="add">add1</button>
-    </div> -->
+        .<button @click="bye">bye</button>
+    </div>
     <div id="root" :x="n"></div>
 </body>
     <!-- 准备好容器 -->
@@ -19,12 +20,12 @@
         Vue.config.productionTip = false
         const vm = new Vue({
             el:'#root',
-            template:`
-                <div>
-                    <h2>n is: {{n}}</h2>
-                    <button @click="add">add1</button>
-                </div>
-            `,
+            // template:`
+            //     <div>
+            //         <h2>n is: {{n}}</h2>
+            //         <button @click="add">add1</button>
+            //     </div>
+            // `,
             
             data:{
                 n:1
@@ -32,13 +33,35 @@
             methods: {
                 add(){
                     this.n++
+                    console.log('add')
+                },
+                bye(){
+                    this.$destroy()
+                    console.log('bye')
+                }
+
+            },
+            watch:{
+                n(){
+                    console.log('n is changed!')
                 }
             },
             beforeCreate() {
-                c
+                console.log('before create')
+            },
+            beforeMount() {
+                console.log('beforeMount')
             },
             mounted(){
-            }
+                console.log('mounted')
+            },
+            beforeDestroy() {
+                console.log('beforeDestroy')
+                console.log(this.n)
+            },
+            destroyed() {
+                console.log('destroyed')
+            },
         })
         //通过外部的计时器实现消失效果，不推荐
         // setInterval(()=>{

@@ -260,3 +260,35 @@ Vue.directive(指令名:配置对象)
 1. Vue在关键时刻帮助调用的一些特殊名称的函数
 2. 生命周期的函数名称不可更改，函数的具体内容可以编写
 3. this指向vm或组件实例对象；
+
+**new Vue()**
+**init(Event & Lifecycle)**
+	`beforeCreate` ：此时无法通过vm访问data中的数据，methods中的方法
+**init(injections & rectivity)**
+	`created` ：此时可以通过vm访问data中的数据，methods中的方法
+Has el option ?（此阶段VUE开始解析模板，生成虚拟DOM（内存中），页面还不能显示解析好的内容）
+	false: when `vm.&mount(el)` is called
+	true:  Has `template` option?
+		true: Compile templaate into render function
+		false: Compile el;s outerHTML as  template
+
+　`beforeMount`：页面是未经Vue编译的DOM结构，所有针对DOM的操作不奏效
+**Create vm.$el and replace el with it(将内存中的虚拟DOM作为真实DOM插入页面)**
+	`mounted`页面是经Vue编译的DOM结构，所有针对DOM的操作奏效，一般进行开启定时器、发送网络请求、订阅消息、绑定自定义事件、等初始化操作
+**Mounted**
+	`beforeUpdate`：此时数据是新的，但是页面是旧的，页面尚未与数据同步
+Virtual DOM re-render and patch（根据新数据，生成新的虚拟DOM，随后与旧的虚拟DOM进行比较，最终完成页面更新Model->View的更新）
+	`update`：此时数据是新的，页面也是新的
+`beforeDestory`：此时vm汇总所有的data、methods、指令等都是可用状态，马上要执行损毁过程，一般在此阶段关闭定时器、取消订阅消息、解绑自定义事件等收尾操作
+Teardown watcher,child compoonents and evnet listenrs
+	`Destroyed`
+	
+
+
+## 常用的生命周期钩子
+1. `mounted`: 发送ajax请求、启动定时器、绑定自定义事件、订阅信息等【初始化操作】
+2. `beforeDestroy` :清除定时器、解绑自定义文件、取消订阅消息【收尾操作】
+## 销毁Vue实例
+1. 销毁后借助Vue开发者工具看不到任何消息
+2. 销毁后自定义事件会失效，但原生DOM事件依然有效
+3. 一般不会再`beforeDestroy` 操作数据，因为即便操作数据，也不会触发更新流程了
