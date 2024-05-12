@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First know Vue</title>
+    <!-- 引入vue -->
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- Step3: 引入组件 -->
+        <h1>{{msg}}</h1>
+        <school></school>
+
+    </div>
+</body>
+    <!-- 准备好容器 -->
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        //Step1: 创建School组件
+        const school = Vue.extend({
+            //不写EL配置项，因为最终所有的组件都被VM管理，由VM决定服务于那个容器
+            template:`
+            <div>
+                <h2>School:{{schoolName}}</h2>
+                <h2>Address:{{Address}}</h2>
+            </div>
+            `,
+            data(){
+                return {
+                    schoolName:'PKU',
+                    Address:'Beijing'
+                }                
+            }
+        })
+
+        new Vue({
+            el:'#root',
+            data:{
+                msg:'Welcome'
+            },
+            //Step2: 注册组件
+            components:{
+                school:school,
+            }
+        })
+    </script>
+</html>
