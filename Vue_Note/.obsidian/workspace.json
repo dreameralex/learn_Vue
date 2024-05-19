@@ -158,7 +158,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -172,13 +172,14 @@
   },
   "active": "7edfbdf43451d185",
   "lastOpenFiles": [
+    "picture/Pasted image 20240513235518.png",
+    "C1 Vue核心.md",
+    "C2 Vue组件化流程.md",
     "JS语法.md",
     "picture/1715504891127.png",
     "picture",
     "1713600552323.png",
     "1714227517771.png",
-    "C2 Vue组件化流程.md",
-    "C1 Vue核心.md",
     "未命名"
   ]
 }

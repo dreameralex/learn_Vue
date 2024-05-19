@@ -113,5 +113,42 @@ Vue.component('组件名',组件)
 （2）.newVue()配置中：
 	data函数、methods中的函数、Watch中的函数、computed中的函数它们的this均是【Vue实例对象】。
 	
-5.Vuecomponent的实例对象，以后简称vc（也可称之为：组件实例对象）
+5.Vuecomponent的实例对象，**以后简称vc**（也可称之为：组件实例对象）
 	Vue的实例对象，以后简称vm。
+
+## 一个重要的内置关系
+一个重要的内置关系：
+```js
+VueComponent.prototype.__proto__ === Vue.prototype
+```
+为什么要有这个关系：让实例对象（vc）可以访问到Vue原型上的属性、方法
+
+```js
+function Demo(){
+            this.a = 1
+            this.b = 2
+        }
+        //创建Demo的实例对象
+        const d = new Demo()
+
+        console.log(Demo.prototype)//显示原型属性
+        console.log(Demo.__proto__)//隐式原型属性
+```
+
+![[Pasted image 20240513235518.png]]
+
+# 单文件组件
+
+
+# 使用VUE脚手架
+Vue脚手架是Vue官方提供的标准化开发工具（开发平台）。
+最新的版本是4.x。
+文档：https://cli.vuejs.org/zh/。
+
+
+```cmd
+切换到目录，创建
+vue create xxx
+启动项目
+npm run server
+```
