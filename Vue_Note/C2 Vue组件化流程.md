@@ -2,7 +2,7 @@
 
 - 非单文件组件
 	一个文件中包含有n个组件。
-- 单文件组件
+- 单文0件组件
 	一个文件中包含有1个组件。
 
 Vue使用组件的步骤
@@ -193,3 +193,90 @@ render函数接收到的createElement函数去指定具体内容。
 3.使用方式
 打标识：`<h1ref="xxx>.....</h1>`或`<Schoolref="xxx">/School>`
 获取：`this.$refs.xxX`
+
+## props配置
+功能：让组件接收外部传过来的数据
+（1）.传递数据：
+	`<Demoname="xXx”/>`
+（2）.接收数据：
+	第一种方式（只接收）：
+		`props:[‘name＇]`
+	第二种方式（限制类型）：
+```js
+	props:{
+		name:Number
+	}	
+```
+第三种方式（限制类型、限制必要性、指定默认值）
+```js
+	props:t
+	name:t
+	type：String，//类型
+	required:true，//必要性
+	default：老王”//默认值
+```
+备注：props是只读的，Vue底层会监测你对props的修改，如果进行了修改，就会发出警告，	若业务需求确实需要修改，那么请复制props的内容到data中一份，然后去修改data中	的数据。
+
+```js
+<template>
+    <div>
+        <h1>{{msg}}</h1>
+        <h2>Student Name: {{name}}</h2>
+        <h2>Age: {{age}}</h2>
+        <h2>Gender: {{sex}} </h2>
+        <button @click="updateAge">Try to change receive Name</button>
+    </div>
+</template>
+
+<script>
+export default {
+    name:'Student',
+    data() {
+        return {
+            msg:'Student Info:'
+        }
+    },
+    //props:['name','sex','age']
+
+    //接受的同时对数据进行类型限制
+    // props:{
+    //     name:String,
+    //     age:Number,
+    //     sex:String
+    // }
+
+    //接受的时候对数据：进行类型限制+默认值的指定+必要性的限制
+    props:{
+        name:{
+            type:String,//name的类型是字符串
+            required:true//name是必须的
+        },
+        age:{
+            type:Number,
+            default:99//默认值
+        },
+        sex:{
+            type:String,
+            default:'Male'
+        },
+
+    },
+    methods:{
+        updateAge(){
+            this.age = 99
+        }
+    }
+}
+</script>
+```
+## Mixin混入
+功能：可以把多个组件共用的配置提取成一个混入对象
+使用方式：
+第一步定义混合，例如：
+```js
+data(){...}，
+methods:{...}
+```
+第二步使用混入，例如：
+（1）.全局混入：Vue.mixin（xxx）
+（2）.局部混入：mixins:['xXx]
