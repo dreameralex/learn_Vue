@@ -123,6 +123,7 @@ VueComponent.prototype.__proto__ === Vue.prototype
 ```
 为什么要有这个关系：让实例对象（vc）可以访问到Vue原型上的属性、方法
 
+
 ```js
 function Demo(){
             this.a = 1
@@ -280,3 +281,27 @@ methods:{...}
 第二步使用混入，例如：
 （1）.全局混入：Vue.mixin（xxx）
 （2）.局部混入：mixins:['xXx]
+
+## 插件
+功能：用于增强Vue
+本质：包含insta11方法的一个对象，insta11的第一个参数是Vue，第二个以后的参数是插件使用者传递的数据。
+定义插件：
+```js
+对象install=function（vue，options）
+{
+	//1.添加全局过滤器
+	Vue.filter(....)
+	
+	//2，添加全局指令
+	Vue.directive(....)
+	
+	//3，配置全局混入（合）
+	Vue.mixin(....)
+	
+	//4.添加实例方法
+	Vue·prototype.smyMethod = function （） {···J
+	Vue·prototype.smyProperty= XXXX
+	
+	//使用插件
+	Vue.use()
+```
