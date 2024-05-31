@@ -19,8 +19,13 @@
         name:'App',
         components:{MyFooter,MyHeader,MyList},
         data(){
-            return{
-                todos: JSON.parse(localStorage.getItem('todos')) || []
+        return{
+            todos:[
+                {id:'0001',title:'Eat',completed:true},
+                {id:'0002',title:'Sleep',completed:true},
+                {id:'0003',title:'Somoke',completed:true},
+                {id:'0004',title:'Fight',completed:false}
+                ]
             }
         },
         methods:{
@@ -52,16 +57,7 @@
                     return !todo.completed
                 })
             }
-        },
-        watch:{
-            todos:{
-                deep:true,
-                handler(value){
-                    localStorage.setItem('todos',JSON.stringify(value))
-                }
-            }
         }
-
     }
 </script>
 

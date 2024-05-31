@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sessionStorage</title>
+</head>
+<body>
+    <h2>sessionStorage</h2>
+    <button onclick="saveDate()">Click to Store</button>
+    <button onclick="readData()">Click to read data</button>
+    <button onclick="deleteData()">Click to delete data</button>
+    <button onclick="deleteAllData()">Click to delete all data</button>
+</body>
+<script type="text/javascript">
+    let p = {name:'alex',age:18}
+    function saveDate(){
+        sessionStorage.setItem('msg','hello!')
+        sessionStorage.setItem('person',JSON.stringify(p))
+    }
+    function readData(){
+        console.log(sessionStorage.getItem('msg'))
+        result = sessionStorage.getItem('person')
+        console.log(JSON.parse(result))
+    }
+    function deleteData(){
+        sessionStorage.removeItem('msg')
+    }
+    function deleteAllData(){
+        sessionStorage.clear()
+    }
+</script>
+
+</html>
