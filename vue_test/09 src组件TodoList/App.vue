@@ -2,10 +2,9 @@
     <div class="root">
         <div class="todo-container">
             <div class="todo-wrap">
-                <!-- 第一个是事件名，后一个是回调名 -->
-                <MyHeader @addTodo='addTodo' />
+                <MyHeader :addTodo='addTodo' />
                 <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-                <MyFooter :todos="todos" @checkAllTodo="checkAllTodo" @cleanAllTodo="cleanAllTodo"/>
+                <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :cleanAllTodo="cleanAllTodo"/>
             </div>
         </div>
     </div>
@@ -43,15 +42,12 @@
             },
             //全选
             checkAllTodo(done){
-                console.log(1)
                 this.todos.forEach((todo)=>{
                     todo.completed = done
-                    console.log(this.todos)
                 })
             },
             //取消全选
             cleanAllTodo(){
-                console.log(2)
                 this.todos = this.todos.filter((todo)=>{
                     return !todo.completed
                 })

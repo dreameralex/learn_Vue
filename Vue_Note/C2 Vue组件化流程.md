@@ -319,6 +319,137 @@ methods:{...}
 3.使用v-model时要切记：v-model绑定的值不能是props传过来的值，因为props是不可以修改的！
 4.props传过来的若是对象类型的值，修改对象中的属性时Vue不会报错，但不推荐这样做。
 
+## 组件自定义事件
+
+1. 一种组件间通信的方式，适用于：**子组件===>父组件**
+2. 使用场景：A是父组件，B是子组件，B想给A传数据，那么就要在A中给B绑定自定义事件（事件的回调在A中）
+3. 绑定自定义事件：
+	1.第一种方式，在父组件中：`<Demo @atguigu='test"/>` 或 `<Demov-on:atguigu="test”/>`
+
+	2.第二种方式，在父组件中：
+```js
+	<Demoref=”demo”/>
+	mounted()t
+	this.refs.xxx.Son（'atguigu'，this.test）
+```
+``
+	3.若想让自定义事件只能触发一次，可以使用`once`修饰符，或`$once`方法
+4. 触发自定义事件：`this.$emit（atguigu，数据）`
+5. 解绑自定义事件`this.$off（atguigu'）`
+6. 组件上也可以绑定原生DOM事件，需要使用`native`修饰符
+7. 注意：通过`this.$refs.xxx.$on（‘atguigu'，回调）`绑定自定义事件时，回调要么配置在methods中，要么用箭头函数，否则this指向会出问题！！
+
+
+APP
+```js
+<template>
+    <div class="app">
+        <h1>{{msg}},Student name is: {{studentName}}</h1>
+        <!-- 触发了atguigu事件，则demo函数被触发 -->
+        <!-- <Student v-on:atguigu="getStudentlName"/> -->
+
+        <!-- this.$refs.student 通过这种方式可以获取student组件的实例对象 -->
+        <!-- <student ref="student"/> -->
+        <!-- <student @atguigu="getStudentlName" @demo="m1"/> -->
+        <hr>
+        <!-- 通过父组件给子组件传递props实现：子给父传递数据 -->
+        <School :getSchoolName="getSchoolName"/>
+
+        <!-- 此处认为click是自定义事件，而非原生DOM,想要使用呢要在student中注册 -->
+        <!-- <student ref="student" @click="show"/> -->
+        <!-- 想要识别原生DOM的 -->
+        <student ref="student" @click.native="show"/>
+
+    </div>
+</template>
+
+<script>
+    import Student from './components/Student.vue'
+    import School from './components/School.vue'
+    export default {
+        name:'App',
+        components:{Student,School},
+        data() {
+            return {
+                msg:'Welcome to learn Vue!',
+                studentName:''
+            }
+        }, 
+        methods:{
+            getSchoolName(name){
+                console.log("App get school name: ", name)
+            },
+            getStudentlName(name){
+                console.log('App get student name:!',name)
+                this.studentName = name
+            },
+            m1(){
+                console.log('Deno event have been triggered!')
+            },
+            show(){
+                alert(123)
+            }
+        },
+        mounted(){
+
+            //this.$refs.student.$on('atguigu',this.getStudentlName)
+            //this.$refs.student.$once('atguigu',this.getStudentlName)
+
+            this.$refs.student.$on('atguigu',this.getStudentlName)
+
+            // this.$refs.student.$on('atguigu',(name) => {
+            //     //这里的this是student组件对象，箭头函数没有自己的this，所以往外找this指向app的实例对象
+            //     console.log('App get student name:!',name)
+            //     this.studentName = name
+            // })
+        }
+    }
+</script>
+```
+
+Student:
+```js
+<template>
+    <div class="student">
+        <h2>Student Name: {{name}}</h2>
+        <h2>Student Gender: {{sex}}</h2>
+        <button @click="sendStudentName">Give Student name to App</button>
+        <button @click="unbind">Unbind atguigu</button>
+        <button @click="death">销毁当前Student组件的实例对象</button>
+        </div>
+</template>
+
+<script>
+    export default {
+        name:'Student',
+        data() {
+            return {
+                name:'Alex',
+                sex:'Male'
+            }
+        },
+        methods:{
+            sendStudentName(){
+                //触发student组件实例身上的atguigu
+                this.$emit('atguigu',this.name)
+                this.$emit('demo')
+                this.$emit('click')
+            },
+            unbind(){
+                //this.$off('atguigu')//解绑一个事件
+                //this.$off(['atguigu','demo'])//解绑多个事件
+                this.$off()//解绑所有的
+            },
+            death(){
+                this.$destroy()//销毁当前Student组件的实例对象
+            }
+        }
+    }
+</script>
+```
+
+
+
 # 浏览器本地存储
 1.存储内容大小一般支持5MB左右（不同浏览器可能还不一样）
 2.浏览器端通过`Window.sessionStorage`和`Window.localStorage`属性来实现本地存储机制
@@ -336,3 +467,5 @@ methods:{...}
 	2. `LocalStorage`存储的内容，需要手动清除才会消失
 	3. `xxxxxStorege·getItem(xxx)`如果xxx对应的value获取不到，那么`getltem`的返回值是null。
 	4. `JSON.parse(null)`的结果依然是null
+
+#

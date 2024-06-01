@@ -43,15 +43,12 @@
             },
             //全选
             checkAllTodo(done){
-                console.log(1)
                 this.todos.forEach((todo)=>{
                     todo.completed = done
-                    console.log(this.todos)
                 })
             },
             //取消全选
             cleanAllTodo(){
-                console.log(2)
                 this.todos = this.todos.filter((todo)=>{
                     return !todo.completed
                 })
