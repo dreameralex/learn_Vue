@@ -9,27 +9,25 @@
 </template>
 
 <script>
-    import PubSub from 'pubsub-js';
-    export default {
-        name:'MyItem',
-        //声明接受todo对象
-        props:['todo'],
-        methods:{
-            //勾选
-            handleCheck(id){
-                //this.checkTodo(id)
-                this.$bus.$emit('checkTodo',id)
-            },
-            //删除
-            handleDelete(id){
-                if(confirm('Are you sure to delete?')){
-                    //this.deleteTodo(id)
-                    // this.$bus.$emit('deleteTodo',id)
-                    PubSub.publish('deleteTodo',id)
-                }
+export default {
+    name:'MyItem',
+    //声明接受todo对象
+    props:['todo'],
+    methods:{
+        //勾选
+        handleCheck(id){
+            //this.checkTodo(id)
+            this.$bus.$emit('checkTodo',id)
+        },
+        //删除
+        handleDelete(id){
+            if(confirm('Are you sure to delete?')){
+                //this.deleteTodo(id)
+                this.$bus.$emit('deleteTodo',id)
             }
         }
     }
+}
 </script>
 
 <style scoped>

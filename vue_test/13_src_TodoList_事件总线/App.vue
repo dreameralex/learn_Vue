@@ -12,11 +12,9 @@
 </template>
 
 <script>
-    import PubSub from 'pubsub-js';
     import MyFooter from './components/MyFooter.vue';
     import MyHeader from './components/MyHeader.vue';
     import MyList from './components/MyList.vue';
-
 
     export default {
         name:'App',
@@ -38,7 +36,7 @@
                 })
             },
             //删除
-            deleteTodo(_,id){
+            deleteTodo(id){
                 this.todos = this.todos.filter((todo)=>{
                     return todo.id !== id
                 })
@@ -66,11 +64,11 @@
         },
         mounted(){
             this.$bus.$on('checkTodo',this.checkTodo)
-            this.pubId = PubSub.subscribe('deleteTodo',this.deleteTodo)
+            this.$bus.$on('deleteTodo',this.deleteTodo)
         },
         beforeDestroy(){
             this.$bus.$off('checkTodo')
-            PubSub.unsubscribe(this.pubId)
+            this.$bus.$off('deleteTodo')
         }
     }
 </script>

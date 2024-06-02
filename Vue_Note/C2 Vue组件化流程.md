@@ -449,6 +449,45 @@ Student:
 ```
 
 
+## 全局事件总线：任意组件间通信
+![[Pasted image 20240602095736.png]]
+
+
+1 一种组件间的通信方式，适用于任意组件间同行 
+2 安装全局总线
+Main.js
+```js
+//创建vm
+new Vue({
+    el:'#app',
+    render: h => h(App),
+    beforeCreate(){
+        Vue.prototype.$bus = this //安装全局事件总线
+    }
+})
+
+```
+
+3 使用事件总线：
+接受数据：A组件想接受数据，则A组件汇总给$bus绑定自定义事件，时间在回调留在A组件自身
+```js
+methods(){
+	demo(data){......}
+}
+......
+mounted(){
+	this.$bus.$on('xxx',this.demo)
+}
+```
+提供数据：
+```js
+this.$bus.$emit('xxx',data)
+```
+4 最好在beforeDestroy钩子中，用$off去解绑组件用到的事件
+
+
+
+
 
 # 浏览器本地存储
 1.存储内容大小一般支持5MB左右（不同浏览器可能还不一样）
