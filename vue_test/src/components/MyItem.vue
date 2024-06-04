@@ -2,9 +2,17 @@
    <li>
         <label>          
             <input type="checkbox" :checked="todo.completed" @change="handleCheck(todo.id)"/>
-            <span>{{todo.title}}</span>
+            <span v-show="!todo.isEdit">{{todo.title}}</span>
+            <input 
+                type="text" 
+                v-show="todo.isEdit"    
+                :value="todo.title" 
+                @blur="handleBlur(todo,$event)"
+                ref="inputTitle"
+            >
         </label>
         <button class="btn btn-danger" @click="handleDelete(todo.id)">Delete</button>
+        <button class="btn btn-edit" @click="handleEdit(todo)">Edit</button>
     </li>
 </template>
 
@@ -27,6 +35,24 @@
                     // this.$bus.$emit('deleteTodo',id)
                     PubSub.publish('deleteTodo',id)
                 }
+            },
+            //编辑
+            handleEdit(todo){
+                if(todo.hasOwnProperty.call(todo, "idEdit")){
+                    todo.isEdit = true
+                }else{
+                    this.$set(todo,'isEdit',true)
+                }
+                //nextTick 让DOM更新完后再调用函数
+                this.$nextTick(function(){
+                    this.$refs.inputTitle.focus()
+                })
+            },
+            //失去焦点(回调)，真正执行修改逻辑
+            handleBlur(todo,e){
+                todo.isEdit = false
+                if(!e.target.value.trim()) return alert('Input can\'t be empty')
+                this.$bus.$emit('updateTodo',todo.id,e.target.value)
             }
         }
     }

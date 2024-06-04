@@ -487,9 +487,9 @@ this.$bus.$emit('xxx',data)
 
 
 
+# 其他
 
-
-# 浏览器本地存储
+## 浏览器本地存储
 1.存储内容大小一般支持5MB左右（不同浏览器可能还不一样）
 2.浏览器端通过`Window.sessionStorage`和`Window.localStorage`属性来实现本地存储机制
 3.相关API
@@ -507,4 +507,7 @@ this.$bus.$emit('xxx',data)
 	3. `xxxxxStorege·getItem(xxx)`如果xxx对应的value获取不到，那么`getltem`的返回值是null。
 	4. `JSON.parse(null)`的结果依然是null
 
-#
+## nextTick
+1.语法：`this.$nextTick`（回调函数）
+2.作用：在下一次DOM更新结束后执行其指定的回调。
+3.什么时候用当改变数据后要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行
