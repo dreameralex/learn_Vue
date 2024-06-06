@@ -1,31 +1,23 @@
 <template>
-    <transition name="animate__animated animate__bounce"
-        appear
-        enter-active-class="animate__jackInTheBox"
-        leave-active-class="animate__fadeOut"
-        >
-        <li>
-            <label>          
-                <input type="checkbox" :checked="todo.completed" @change="handleCheck(todo.id)"/>
-                <span v-show="!todo.isEdit">{{todo.title}}</span>
-                <input 
-                    type="text" 
-                    v-show="todo.isEdit"    
-                    :value="todo.title" 
-                    @blur="handleBlur(todo,$event)"
-                    ref="inputTitle"
-                >
-            </label>
-            <button class="btn btn-danger" @click="handleDelete(todo.id)">Delete</button>
-            <button class="btn btn-edit" @click="handleEdit(todo)">Edit</button>
-        </li>
-    </transition>
-
+   <li>
+        <label>          
+            <input type="checkbox" :checked="todo.completed" @change="handleCheck(todo.id)"/>
+            <span v-show="!todo.isEdit">{{todo.title}}</span>
+            <input 
+                type="text" 
+                v-show="todo.isEdit"    
+                :value="todo.title" 
+                @blur="handleBlur(todo,$event)"
+                ref="inputTitle"
+            >
+        </label>
+        <button class="btn btn-danger" @click="handleDelete(todo.id)">Delete</button>
+        <button class="btn btn-edit" @click="handleEdit(todo)">Edit</button>
+    </li>
 </template>
 
 <script>
     import PubSub from 'pubsub-js';
-    import 'animate.css'
     export default {
         name:'MyItem',
         //声明接受todo对象
