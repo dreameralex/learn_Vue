@@ -20,6 +20,26 @@
             }
           },
           {
+            "id": "6d3ec838d9148eff",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.2"
+              }
+            }
+          },
+          {
+            "id": "67ee71478869b0cc",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.3"
+              }
+            }
+          },
+          {
             "id": "dc35cf63295c593d",
             "type": "leaf",
             "state": {
@@ -43,7 +63,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -170,7 +191,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "7edfbdf43451d185",
+  "active": "67ee71478869b0cc",
   "lastOpenFiles": [
     "picture/Pasted image 20240607002326.png",
     "picture/Pasted image 20240602095736.png",
