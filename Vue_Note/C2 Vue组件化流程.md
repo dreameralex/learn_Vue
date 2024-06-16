@@ -485,6 +485,54 @@ this.$bus.$emit('xxx',data)
 ```
 4 最好在beforeDestroy钩子中，用$off去解绑组件用到的事件
 
+
+
+## 配置代理
+解决跨域，使用cors解决跨域
+
+方法一：
+```js
+devServer: {
+	proxy: 'http://localhost:5000'
+}
+```
+方法二：
+```js
+module.exports = {
+  pages:{
+    index: {
+      entry: 'src/main.js'
+    },
+  },
+
+  lintOnSave:false,//关闭语法检查
+  // 开启代理服务器（方式1）
+  // devServer: {
+  //   proxy: 'http://localhost:5000'
+  // }
+  // 开启代理服务器（方式2）
+  devServer: {
+    proxy: {
+      '/api':{//匹配所有以'/api'开头的请求路径
+        target: 'http://localhost:5000',
+        pathRewrite:{'^/api':''}
+      // ws: true,//Websocket
+      // changeOrigin: true
+      },
+      '/demo':{
+        target: 'http://localhost:5001',
+        pathRewrite:{'^/demo':''}
+      // ws: true,//Websocket
+      // changeOrigin: true
+      }
+    }
+  }
+}
+
+```
+target: 'http://localhost:5000',基础路径
+
+
 # 过渡与动画
 1. 作用：在插入、更新或移除DOM元素时，在合适的时候给元素添加样式类名
 ![[Pasted image 20240607002326.png]]
