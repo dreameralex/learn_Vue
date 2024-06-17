@@ -10,11 +10,11 @@ function count_leaves(x){
 x = pair(1,2)
 
 function is_pair(x){
-    return typeof x  === "function"
+    return x.name  === "dispatch"
         ? true
         : false
 }
-
+console.log('Is pair:')
 console.log(is_pair(x))
 
 // Mapping over trees
@@ -39,9 +39,10 @@ function print_list(items){
 
 function print_tree(tree){
     while( tree !== null){
-        if( typeof head(tree)  === "function"){
+        if(  is_pair(head(tree))){
+            console.log('<')
             print_tree(head(tree))
-            console.log('-')
+            console.log('>')
         }else{
             console.log(head(tree),' ')
             if(typeof tail(tree) === 'function'){
@@ -52,6 +53,18 @@ function print_tree(tree){
 }
 console.log('Print tree')
 print_tree(tree)
+
+//Count leaves
+function count_leaves(x){
+    return x === null
+        ? 0
+        : !is_pair(x)
+        ? 1
+        : count_leaves(head(x)) + 
+            count_leaves(tail(x))
+}
+console.log('count_leaves')
+console.log(count_leaves(tree))
 
 
 // Basic
