@@ -8,7 +8,6 @@
 	</section>
 </template>
 <script>
-	import axios from 'axios'
 	export default {
 		name: 'Search',
 		data() {
@@ -18,9 +17,9 @@
 		},
 		methods:{
 			searchUsers(){
-				//请求前更新this数据
+				请求前更新this数据
 				this.$bus.$emit('unpdateListData', {isFirst:false,isLoading:true,errMsg:'',users:[]})
-				axios.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
+				this.$http.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
 					Response => {
 						//请求成功更新数据
 						this.$bus.$emit('unpdateListData',{isLoading:true,errMsg:'',users:Response.data.items})
