@@ -1,19 +1,15 @@
 <template>
     <div class="category">
         <h3>{{title}}Category</h3>
-        <slot :games="games"></slot>
+        <slot name="center"></slot>
+        <slot name="footer"></slot>
     </div>
 </template>
 
 <script>
 export default {
     name: "Category",
-    props:['title'],
-    data(){
-			return{
-				games:['红色警戒','穿越火线','劲舞团','超级玛'],
-			}
-		}
+    props:['title']
 }
 </script>
 

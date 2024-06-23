@@ -531,6 +531,60 @@ module.exports = {
 
 ```
 target: 'http://localhost:5000',基础路径
+## 插槽
+1.作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于父组件===>子组件。
+2.分类：默认插槽、具名插槽、作用域插槽
+3.使用方式
+1.默认插槽：
+```js
+父组件中：
+<Category>
+	<div>htm1结构1</div>
+</Category>
+子组件中：
+<template>
+	<div>
+		<！--定义插槽-->
+		<s1ot>插槽默认内容...</s1ot>
+	</div>
+</template>
+```
+\
+2.具名插槽：
+```js
+父组件中：
+<Category>
+	<template slot="center”
+		<div>html结构1</div>
+	</template>
+	
+	<template v-slot:footer>
+		<div>html结构2</div>
+	</template>
+</Category>
+
+子组件中：
+<template>
+	<div>
+		<slot :games="games"></slot>
+	</div>
+</template>
+
+<script>
+export default {
+	name:'Category'
+	props:['title']，
+	//数据在子组件自身
+	data(){
+		return {
+			 games:[红色警戒”，穿越火线”，劲舞团”，超级玛丽”]
+		}
+	}
+}
+
+</script>
+
+```
 
 
 # 过渡与动画
@@ -553,9 +607,15 @@ target: 'http://localhost:5000',基础路径
 <transition name="hel1o”
 <hlv-show="isShow"你好啊！</h1>
 </transition>
+
 ```
 
+
 3.备注：若有多个元素需要过度，则需要使用：`<transition-group>`且每个元素都要指定`key`值
+
+
+
+
 
 
 # 其他

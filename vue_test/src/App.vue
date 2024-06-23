@@ -1,17 +1,25 @@
 <template>
 	<div class="container">
-		<!-- 头部搜索 -->
-		<Category title="foods" :listData = "foods">
-			<img src="https://s1.cdn.jiaonizuocai.com/caipu/201607/3110/311017139485.jpg/NjAwX2MyXzQwMA.webp" alt="">
-		</Category>
 		<Category title="games" :listData = "games">
-			<ul>
-           		<li v-for="(item,index) in games" :key="index">{{item}}</li>
-       		</ul>
+			<template scope="atguigu">
+				<ul>
+           			<li v-for="(item,index) in atguigu.games" :key="index">{{item}}</li>
+       			</ul>
+			</template>
 		</Category>
-		<Category title="films" :listData = "films">
-			<video controls src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
+		<Category title="games">
+			<template scope="atguigu">
+				<ol>
+           			<li v-for="(item,index) in atguigu.games" :key="index">{{item}}</li>
+       			</ol>
+			</template>
 		</Category>
+		<Category title="games">
+			<template scope="atguigu">
+           		<h4 v-for="(item,index) in atguigu.games" :key="index">{{item}}</h4>
+			</template>
+		</Category>
+
 	</div>
 </template>
 
@@ -20,18 +28,12 @@
 	export default {
 		name:'App',
 		components: {Category},
-		data(){
-			return{
-				foods:['火锅','烧烤','小龙虾','牛排'], 
-				games:['红色警戒','穿越火线','劲舞团','超级玛'],
-				films:['《教父》','《拆弹专家》','《你好，李焕英》','《尚硅谷》']
-			}
-		}
+		
 	}
 </script>
 
 <style lang="css">
-	.container{
+	.container, .foot{
 		display: flex;
 		justify-content: space-around;
 	}
