@@ -1,47 +1,16 @@
 <template>
-	<div class="container">
-		<Category title="games" :listData = "games">
-			<template scope="atguigu">
-				<ul>
-           			<li v-for="(item,index) in atguigu.games" :key="index">{{item}}</li>
-       			</ul>
-			</template>
-		</Category>
-		<Category title="games">
-			<template scope="atguigu">
-				<ol>
-           			<li v-for="(item,index) in atguigu.games" :key="index">{{item}}</li>
-       			</ol>
-			</template>
-		</Category>
-		<Category title="games">
-			<template scope="atguigu">
-           		<h4 v-for="(item,index) in atguigu.games" :key="index">{{item}}</h4>
-			</template>
-		</Category>
-
+	<div>
+		<Count/>
 	</div>
 </template>
 
 <script scoped>
-	import Category from './components/Category.vue'
+	import Count from './components/Count.vue'	
 	export default {
 		name:'App',
-		components: {Category},
+		components: {Count},
 		
 	}
 </script>
 
-<style lang="css">
-	.container, .foot{
-		display: flex;
-		justify-content: space-around;
-	}
-	video{
-		width: 100%;
-	}
-	img{
-		width: 100%;
-	}
-</style>
-	
+

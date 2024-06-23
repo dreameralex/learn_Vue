@@ -447,7 +447,7 @@ Student:
     }
 </script>
 ```
-
+# Vue中的ajax
 
 ## 全局事件总线：任意组件间通信
 ![[Pasted image 20240602095736.png]]
@@ -615,6 +615,16 @@ export default {
 
 
 
+# Vuex
+## 理解Vuex
+
+1. 概念：专门在Vue 中实现集中式状态（数据）管理的一个Vue 插件，对vue 应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信。
+2. Github 地址: https://github.com/vuejs/vuex
+
+什么时候使用Vuex
+1. 多个组件依赖于同一状态
+2. 来自不同组件的行为需要变更同一状态
+![[Pasted image 20240623115303.png]]
 
 
 
