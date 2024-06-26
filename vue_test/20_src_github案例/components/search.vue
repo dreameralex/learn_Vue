@@ -18,13 +18,16 @@
 		},
 		methods:{
 			searchUsers(){
+				//请求前更新this数据
+				this.$bus.$emit('unpdateListData', {isFirst:false,isLoading:true,errMsg:'',users:[]})
 				axios.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
 					Response => {
-						// console.log('Success!',Response.data)
-						this.$bus.$emit('getUsers',Response.data.items)
+						//请求成功更新数据
+						this.$bus.$emit('unpdateListData',{isLoading:true,errMsg:'',users:Response.data.items})
 					},
 					error => {
-						console.log('Failed!',error.message)
+						//请求失败更新数据
+						this.$bus.$emit('unpdateListData',{isLoading:false,errMsg:error.message,users:[]})
 					}
 				)
 			}

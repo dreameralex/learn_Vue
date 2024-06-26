@@ -447,7 +447,7 @@ Student:
     }
 </script>
 ```
-
+# Vue中的ajax
 
 ## 全局事件总线：任意组件间通信
 ![[Pasted image 20240602095736.png]]
@@ -531,6 +531,60 @@ module.exports = {
 
 ```
 target: 'http://localhost:5000',基础路径
+## 插槽
+1.作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于父组件===>子组件。
+2.分类：默认插槽、具名插槽、作用域插槽
+3.使用方式
+1.默认插槽：
+```js
+父组件中：
+<Category>
+	<div>htm1结构1</div>
+</Category>
+子组件中：
+<template>
+	<div>
+		<！--定义插槽-->
+		<s1ot>插槽默认内容...</s1ot>
+	</div>
+</template>
+```
+\
+2.具名插槽：
+```js
+父组件中：
+<Category>
+	<template slot="center”
+		<div>html结构1</div>
+	</template>
+	
+	<template v-slot:footer>
+		<div>html结构2</div>
+	</template>
+</Category>
+
+子组件中：
+<template>
+	<div>
+		<slot :games="games"></slot>
+	</div>
+</template>
+
+<script>
+export default {
+	name:'Category'
+	props:['title']，
+	//数据在子组件自身
+	data(){
+		return {
+			 games:[红色警戒”，穿越火线”，劲舞团”，超级玛丽”]
+		}
+	}
+}
+
+</script>
+
+```
 
 
 # 过渡与动画
@@ -553,9 +607,25 @@ target: 'http://localhost:5000',基础路径
 <transition name="hel1o”
 <hlv-show="isShow"你好啊！</h1>
 </transition>
+
 ```
 
+
 3.备注：若有多个元素需要过度，则需要使用：`<transition-group>`且每个元素都要指定`key`值
+
+
+
+# Vuex
+## 理解Vuex
+
+1. 概念：专门在Vue 中实现集中式状态（数据）管理的一个Vue 插件，对vue 应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信。
+2. Github 地址: https://github.com/vuejs/vuex
+
+什么时候使用Vuex
+1. 多个组件依赖于同一状态
+2. 来自不同组件的行为需要变更同一状态
+![[Pasted image 20240623115303.png]]
+
 
 
 # 其他
