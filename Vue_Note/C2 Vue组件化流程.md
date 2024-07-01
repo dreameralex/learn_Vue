@@ -626,7 +626,48 @@ export default {
 2. 来自不同组件的行为需要变更同一状态
 ![[Pasted image 20240623115303.png]]
 
+## 基本使用
+1. 初始化核心数据、配置`actions`、配置`mutations`，操作文件`store.js`
+```js
+//引入Vue核心库
+import Vue from 'vue' 
+/入Vuex
+import Vuex from 'vuex'
+//引1用Vuex
+Vue.use(Vuex)
 
+const actions={
+	//响应组件中加的动作
+	jia(context,value){
+		//console.log（'actions中的jia被调用了'，ministore，value)
+		Context.commit('JIA'value）
+	}
+	
+}
+
+const mutations ={
+	//执行加
+	JIA（state，value）{
+		//console.log('mutations中的]IA被调用了'，state，value)
+		state.sum += value
+	}
+}
+
+
+//初始化数据
+const state ={
+	sum:0
+}
+//创建并暴露store
+exportdefault new Vuex.Store({
+	actions,
+	mutations,
+	state
+})
+```
+
+2. 组件读取vuex数据：`$store.state.sum`
+3.  组件修改vuex数据：`$store.dispatch('action中的方法名，数据)` 或`$store.commit('mutations中的方法名'，数据)`
 
 # 其他
 

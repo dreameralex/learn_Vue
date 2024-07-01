@@ -1,8 +1,6 @@
 <template>
     <div>
-        <h1>当前求和为{{he}}</h1>
-        <h2>结果放大10倍: {{bigSum}}</h2>
-        <h3>我在{{xuexiao}}，学习{{xueke}}</h3>
+        <h1>当前求和为{{$store.state.sum}}</h1>
         <select v-model.number="n">
             <option :value="1">1</option>
             <option :value="2">2</option>
@@ -16,31 +14,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
     name: "Count",
     data(){
         return{
             n:1//用户选择的数字
         }
-    },
-    computed:{
-        // he(){
-        //     return this.$store.state.sum
-        // },
-        // 
-        // school(){
-        //     return this.$store.state.school
-        // },
-        // subject(){
-        //     return this.$store.state.subject
-        // }
-        //借助mapState生成计算属性，从state中读取数据
-        ...mapState({he:'sum',xuexiao:'school',xueke:'subject'}),
-        bigSum(){
-            return this.$store.getters.bigSum
-        },
     },
     methods:{
         increment(){
@@ -55,10 +34,6 @@ export default {
         incrementWait(){
             this.$store.dispatch('addWait',this.n)
         }
-    },
-    mounted(){
-        const x = mapState({he:'sum',xuexiao:'school',xueke:'subject'})
-        console.log(x)
     }
 }
 </script>
