@@ -669,15 +669,58 @@ exportdefault new Vuex.Store({
 2. 组件读取vuex数据：`$store.state.sum`
 3.  组件修改vuex数据：`$store.dispatch('action中的方法名，数据)` 或`$store.commit('mutations中的方法名'，数据)`
 
+## 基本使用
+
+6.四个map方法的使用
+1.mapstate方法：用于帮助我们映射`state`中的数据为计算属性
+```js
+computed:{
+	//借助mapstate生成计算属性：sum、school、subject（对象写法）
+	...mapState({sum:sum’,school:school',subject:subject'）
+	//借助mapState生成计算属性：sum、schoo1、subject（数组写法
+	...mapState(['sum＇,school','subject']）,
+}
+```
+
+2.mapGetters方法：用于帮助我们映射`getters`中的数据为计算属性
+```js
+computed{
+	//借助mapGetters生成计算属性：bigsum(对象写法）
+	...mapGetters({bigSum:'bigSum'}）,
+	//借助mapGetters生成计算属性：bigSum(数组写法）
+	...mapGetters(['bigSum'])
+}
+```
+
+3.mapActions方法：用于帮助我们生成与`actions`对话的方法,即：包含`$store.dispatch(xxx)`的函数
+```js
+methods{
+	//靠mapActions生成：incrementOdd、incrementWait(对象形式)
+	...mapActions(fincrementOdd:'jiaOdd’,incrementWait:‘jialait')
+	//靠mapActions生成：incrementOdd、incrementWait(数组形式)
+	...mapActions(['jiaOdd','jiawait'])
+}
+```
+4.mapMutations方法：用于帮助我们生成与`mutations`对话的方法,即：包含`$store.commit(xxx)`的函数
+```js
+methods:{
+	//靠mapActions生成：increment、decrement(对象形式)
+	...mapMutations({increment:'JIA',decrement:'JIAN'}),
+	//靠mapMutations生成：JIA、JIAN(对象形式
+	...maplutations(['JIA','JIAN']),
+}
+```
+
+
 # 其他
 
 ## 浏览器本地存储
 1.存储内容大小一般支持5MB左右（不同浏览器可能还不一样）
 2.浏览器端通过`Window.sessionStorage`和`Window.localStorage`属性来实现本地存储机制
 3.相关API
-	`xxxxStorage.setItem('key','value'）;`
+	`xxxxStorage.setItem('key','value');`
 	该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值
-	`XxxxxStorage.getItem('person'）;``
+	`XxxxxStorage.getItem('person');``
 	该方法接受一个键名作为参数，返回键名对应的值
 	`3xxxxxStorage.removeItem('key');``
 	该方法接受一个键名作为参数，并把该键名从存储中删除

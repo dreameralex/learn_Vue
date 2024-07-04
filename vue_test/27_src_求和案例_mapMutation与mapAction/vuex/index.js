@@ -26,26 +26,17 @@ const actions = {
 //准备mutations 用于操作数据(state)
 const mutations = {
     Add(state,value){
-        console.log('mutation中Add被调用了')
         state.sum += value
     },
     Minus(state,value){
-        console.log('mutation中Minus被调用了')
         state.sum -= value
-    },
-    ADD_PERSON(state,value){
-        console.log('mutation中ADD_PERSON被调用了')
-        state.personList.unshift(value)
     }
 }
 //准备state 用于存储数据
 const state = {
     sum:0, //当前的和
     school: 'PKU',
-    subject: 'Math',
-    personList:[
-        {id:'001',name:'Alex'}
-    ]
+    subject: 'Math'
 }
 //准备getters 用于将state中的数据用于加工
 const getters = {
