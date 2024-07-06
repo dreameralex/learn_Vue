@@ -27,13 +27,19 @@ export default {
         }
     },
     computed:{
-        ...mapState('countAbout',['sum','school','subject']),
-        ...mapState('personAbout',['personList']),
-        ...mapGetters('countAbout',['bigSum'])
+        ...mapState(['sum','school','subject','personList']),
+        bigSum(){
+            return this.$store.getters.bigSum
+        },
     },
     methods:{
-        ...mapMutations('countAbout',{increment:'Add',decrement:'Minus'}),
-        ...mapActions('countAbout',{incrementOdd:'addOdd', incrementWait:'addWait'}),
+        increment(){
+            this.$store.dispatch('add',this.n)
+        },
+        decrement(){
+            this.$store.dispatch('minus',this.n)
+        },
+        ...mapActions({incrementOdd:'addOdd', incrementWait:'addWait'}),
     },
     mounted(){
         // const x = mapState({he:'sum',xuexiao:'school',xueke:'subject'})
