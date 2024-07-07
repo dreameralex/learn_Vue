@@ -710,6 +710,81 @@ methods:{
 	...maplutations(['JIA','JIAN']),
 }
 ```
+# vue-router
+![[Pasted image 20240707101747.png]]
+
+## vue-router 的理解
+vue 的一个插件库，专门用来实现SPA 应用
+6.1.2 对SPA 应用的理解
+1. 单页Web 应用（single page web application，SPA）。
+2. 整个应用只有一个完整的页面。
+3. 点击页面中的导航链接不会刷新页面，只会做页面的局部更新。
+4. 数据需要通过ajax 请求获取。
+
+6.1.3 路由的理解
+1. 什么是路由?
+1. 一个路由就是一组映射关系（key - value）
+2. key 为路径, value 可能是function 或component
+2. 路由分类
+1. 后端路由：
+1) 理解：value 是function, 用于处理客户端提交的请求。
+2) 工作过程：服务器接收到一个请求时, 根据请求路径找到匹配的函数
+来处理请求, 返回响应数据。
+2. 前端路由：
+1) 理解：value 是component，用于展示页面内容。
+2) 工作过程：当浏览器的路径改变时, 对应的组件就会显示。
+
+## 路由
+
+1. 理解： 一个路由（route）就是一组映射关系（key - value），多个路由需要路由器（router）进行管理。
+
+2. 前端路由：key是路径，value是组件。
+
+### 1.基本使用
+1. 安装vue-router，命令：```npm i vue-router```
+2. 应用插件：```Vue.use(VueRouter)```
+3. 编写router配置项:
+
+   ```js
+   //引入VueRouter
+   import VueRouter from 'vue-router'
+   //引入Luyou 组件
+   import About from '../components/About'
+   import Home from '../components/Home'
+   //创建router实例对象，去管理一组一组的路由规则
+   const router = new VueRouter({
+      routes:[
+         {
+            path:'/about',
+            component:About
+         },
+         {
+            path:'/home',
+            component:Home
+         }
+      ]
+   })
+   //暴露router
+   export default router
+
+   ```
+4. 实现切换（active-class可配置高亮样式）
+   ```vue
+   <router-link active-class="active" to="/about">About</router-link>
+   ```
+
+5. 指定展示位置
+
+   ```vue
+   <router-view></router-view>
+   ```
+
+### 2.几个注意点
+
+1. 路由组件通常存放在```pages```文件夹，一般组件通常存放在```components```文件夹。
+2. 通过切换，“隐藏”了的路由组件，默认是被销毁掉的，需要的时候再去挂载。
+3. 每个组件都有自己的```$route```属性，里面存储着自己的路由信息。
+4. 整个应用只有一个router，可以通过组件的```$router```属性获取到。
 
 
 # 其他
