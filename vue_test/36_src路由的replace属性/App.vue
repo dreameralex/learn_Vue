@@ -14,7 +14,7 @@
 			<a class="list-group-item" href="./home.html">Home</a> -->
 
 			<!-- 原始HTML中使用router-link标签实现路由的跳转-->
-			<router-link :replace="true" class="list-group-item" active-class="active" :to="{name:'guanyu'}">About</router-link>
+			<router-link :replace="treu" class="list-group-item" active-class="active" :to="{name:'guanyu'}">About</router-link>
 			<router-link replace class="list-group-item" active-class="active" to="/home">Home</router-link> 
 			</div>
 		</div>

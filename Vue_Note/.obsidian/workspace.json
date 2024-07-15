@@ -20,38 +20,6 @@
             }
           },
           {
-            "id": "6d3ec838d9148eff",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.6.2"
-              }
-            }
-          },
-          {
-            "id": "67ee71478869b0cc",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.6.3"
-              }
-            }
-          },
-          {
-            "id": "dc35cf63295c593d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "C2 Vue组件化流程.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "b856e9b4a7fb3f58",
             "type": "leaf",
             "state": {
@@ -192,14 +160,14 @@
   },
   "active": "7edfbdf43451d185",
   "lastOpenFiles": [
+    "JS语法.md",
+    "C2 Vue组件化流程.md",
     "picture/Pasted image 20240707101747.png",
     "picture/Pasted image 20240623115303.png",
     "picture/Pasted image 20240607002326.png",
     "picture/Pasted image 20240602095736.png",
     "C1 Vue核心.md",
-    "C2 Vue组件化流程.md",
     "picture/Pasted image 20240513235518.png",
-    "JS语法.md",
     "picture/1715504891127.png",
     "picture",
     "1713600552323.png",

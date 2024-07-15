@@ -840,6 +840,124 @@ $route.query.id
 $route.query.title
 ```
 
+### 6.路由的params参数
+1.配置路由，声明接收params参数
+```js
+{
+	path:'/home'
+	component:Home
+	children:[
+	{
+		path:'news'
+		component:News
+	},
+	{
+		Component:Message
+		{
+			children:[
+			{
+				name:'xiangqing'
+				path：'detail/：id/:title'，//使用占位符声明接收params参数
+				component:Detail
+			}
+			
+		}
+		
+	}
+}
+```
+
+
+2.传递参数
+```js
+<1--跳转并携带params参数，to的字符串写法-->
+<router-link :to="/home/message/detail/666/你好">跳转</router-link>
+<！--跳转并携带params参数，to的对象写法>
+<router-link
+	:to{
+		name:'xiangqing'
+		params:{
+			id:666，
+			title:你好
+		}
+	}
+>跳转</router-1ink>
+```
+特别注意：路由携带params参数时，若使用to的对象写法，则不能使用path配置项，必须使用name配置！
+
+3.接受参数
+```js
+$route.params.id
+$route.params.title
+```
+
+
+### 7. 路由的props配置
+
+```js
+{
+name:'xiangqing',
+    path:'detail/:id/:title',
+    component:Detail,
+    //props的第一种写法，值为对象,该对象的所有key-value都会一props的形式传给Detail组件。
+    // props:{
+    //     a:1,b:'hello'
+    // }
+    //props的第二种写法，值为布尔值，若布尔值为真，则吧改路由组件收到的所有params参数，以props的形式传给detail组件
+    // props:true
+    //props:的第三种写法，值为函数
+    props({query:{id,title}}){
+        return {id, t}
+    }
+}
+```
+
+
+### 8. `<router-link>`的repace属性
+1.作用：控制路由跳转时操作浏览器历史记录的模式
+2.浏览器的历史记录有两种写入方式：分别为puch和replace，push是追加历史记录，replace是替换当前记录。路由跳转时候
+默认为push
+3.如何开启replace模式：<router-link replace> News </router-link >
+
+
+
+### 9.编程式路由导航
+1.作用：不借助`<router-link>` 实现路由跳转，让路由跳转更加灵活
+2.具体编码：
+``` js 
+//srouter的两个API
+this.Srouter.push({
+	name:'xiangqing'
+	params:{
+		id:xxx，
+		title:xxx
+	}
+}
+
+this.Srouter.replace({
+	name:'xiangqing'
+	params:{
+		id:xxx，
+		title:xxx
+	}
+}
+//前进
+this.$router.forward()
+//后退
+this.$router.backward()
+//可前进，可后退
+this.$router.go(n)
+```
+
+
+10.缓存路由组件
+1.作用：让不展示的路由组件保持挂载，不被销毁
+2.县体编码
+```js
+<keep-alive include="News">
+	<router-view></router-view>
+</keep-alive>
+```
 
 
 # 其他
@@ -866,3 +984,5 @@ $route.query.title
 1.语法：`this.$nextTick`（回调函数）
 2.作用：在下一次DOM更新结束后执行其指定的回调。
 3.什么时候用当改变数据后要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行
+
+
